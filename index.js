@@ -28,11 +28,20 @@ import os from "node:os";
 
 // console.log(os.cpus()[1]);
 
-fs.readFile("test.txt", "utf-8", (err, data) => {
+// fs.readFile("test.txt", "utf-8", (err, data) => {
+//   if (err) {
+//     console.log("Something went wrong");
+//     return;
+//   } else {
+//     console.log(data);
+//   }
+// });
+
+fs.writeFile("copy.txt", "Hello Folks", "utf-8", (err) => {
   if (err) {
     console.log("Something went wrong");
     return;
   } else {
-    console.log(data);
+    console.log("Written in File");
   }
 });
