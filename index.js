@@ -37,11 +37,15 @@ import os from "node:os";
 //   }
 // });
 
-fs.writeFile("copy.txt", "Hello Folks", "utf-8", (err) => {
-  if (err) {
-    console.log("Something went wrong");
-    return;
-  } else {
-    console.log("Written in File");
-  }
+// fs.writeFile("copy.txt", "Hello Folks", "utf-8", (err) => {
+//   if (err) {
+//     console.log("Something went wrong");
+//     return;
+//   } else {
+//     console.log("Written in File");
+//   }
+// });
+
+fs.mkdir("app/utils", { recursive: true }, () => {
+  console.log("Folder created");
 });
