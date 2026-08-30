@@ -1,5 +1,5 @@
-// import fs from "node:fs";
-import fs from "node:fs/promises";
+import fs from "node:fs";
+// import fs from "node:fs/promises";
 import os from "node:os";
 
 // const content = fs.readFileSync("test.txt", "utf-8");
@@ -51,8 +51,10 @@ import os from "node:os";
 //   console.log("Folder created");
 // });
 
-async function readData(path) {
-  return await fs.readFile(path, "utf-8");
-}
+// async function readData(path) {
+//   return await fs.readFile(path, "utf-8");
+// }
 
-readData("test.txt").then((data) => console.log(data));
+// readData("test.txt").then((data) => console.log(data));
+
+console.log(fs.statSync('test.txt').birthtime.toLocaleDateString());
