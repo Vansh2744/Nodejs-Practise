@@ -1,4 +1,5 @@
-import fs from "node:fs";
+// import fs from "node:fs";
+import fs from "node:fs/promises";
 import os from "node:os";
 
 // const content = fs.readFileSync("test.txt", "utf-8");
@@ -46,6 +47,12 @@ import os from "node:os";
 //   }
 // });
 
-fs.mkdir("app/utils", { recursive: true }, () => {
-  console.log("Folder created");
-});
+// fs.mkdir("app/utils", { recursive: true }, () => {
+//   console.log("Folder created");
+// });
+
+async function readData(path) {
+  return await fs.readFile(path, "utf-8");
+}
+
+readData("test.txt").then((data) => console.log(data));
