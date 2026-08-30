@@ -1,9 +1,17 @@
 import { createServer } from "node:http";
+import fs from "node:fs";
 
 const server = createServer((req, res) => {
   if (req.url === "/") {
-    res.writeHead(200, { "content-type": "application/json" });
-    res.end(JSON.stringify({ message: "Hello Vansh" }));
+    res.writeHead(200, { "content-type": "text/html" });
+    const data = fs.createReadStream("./index.html");
+    // data.on("data", (chunk) => {
+    //   res.write(chunk);
+    // });
+    // data.on("end", () => {
+    //   res.end();
+    // });
+    data.pipe(res);
   } else if (req.url === "/user") {
     res.writeHead(200, { "content-type": "application/json" });
     res.end(JSON.stringify({ name: "Vansh", email: "vansh@gmail.com" }));
