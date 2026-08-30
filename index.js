@@ -7,6 +7,9 @@ import fs from "node:fs";
 
 // fs.appendFileSync("copy.txt", `\n${content}`, "utf-8");
 
-fs.mkdirSync("app");
+// fs.mkdirSync("app");
 
-fs.mkdirSync("src/utils", { recursive: true });
+// fs.mkdirSync("src/utils", { recursive: true });
+
+// fs.rmdirSync("app");
+fs.rmSync("src", { recursive: true, force: true });
