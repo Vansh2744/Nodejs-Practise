@@ -4,8 +4,15 @@ const app = express();
 
 app.use(express.json());
 
+const ageCheck = (req, res, next) => {
+  const { age } = req.body;
+  if (age < 18) {
+    return res.json({ message: "Invalid Age" });
+  }
+  next();
+};
 
-app.post("/", (req, res) => {
+app.post("/", ageCheck, (req, res) => {
   const { email, username, age } = req.body;
 
   return res.json({
