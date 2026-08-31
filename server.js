@@ -18,6 +18,16 @@ const server = createServer((req, res) => {
   } else if (req.url === "/product") {
     res.writeHead(200, { "content-type": "application/json" });
     res.end(JSON.stringify({ name: "Headphones", price: 23000 }));
+  } else if (req.method == "POST" && req.url === "/create") {
+    let buff = "";
+    req.on("data", (chunk) => {
+      buff = buff + chunk.toString();
+    });
+    req.on("end", () => {
+      console.log(JSON.parse(buff).email);
+      res.writeHead(200, { "content-type": "application/json" });
+      res.end(buff);
+    });
   } else {
     res.writeHead(400, { "content-type": "application/json" });
     res.end(JSON.stringify({ message: "No url found" }));
