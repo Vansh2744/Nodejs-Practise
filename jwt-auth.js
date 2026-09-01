@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
 import express from "express";
 import session from "express-session";
+import cors from "cors";
+import multer from "multer";
+import path from "path";
 
 const app = express();
 
@@ -15,6 +18,14 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 1000,
     },
+  }),
+);
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
@@ -36,6 +47,24 @@ app.get("/user", (req, res) => {
   const data = jwt.verify(token, "suhufhueu834eruyrr884");
 
   res.json(data);
+});
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename(req, file, cb) {
+    const uniqueName = Date.now() + path.extname(file.originalname);
+    cb(null, uniqueName);
+  },
+});
+
+const upload = multer({ storage });
+
+app.post("/upload", upload.single("myfile"), (req, res) => {
+  res.json({
+    name: req.file.filename,
+  });
 });
 
 app.listen(3000, () => {
