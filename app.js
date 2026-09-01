@@ -20,24 +20,33 @@ const checkUser = (req, res, next) => {
   next();
 };
 
-app.get("/", (req, res, next) => {
-  // const { email, username, age } = req.body;
+// app.get("/", (req, res, next) => {
+//   // const { email, username, age } = req.body;
 
-  // return res.json({
-  //   message: "You are registered successfully",
-  //   email,
-  //   username,
-  // });
+//   // return res.json({
+//   //   message: "You are registered successfully",
+//   //   email,
+//   //   username,
+//   // });
 
-  // throw new Error("Unable to create user");
+//   // throw new Error("Unable to create user");
 
-  const user = null;
+//   const user = null;
 
-  if (!user) {
-    next(new Error("Unable to find user"));
+//   if (!user) {
+//     next(new Error("Unable to find user"));
+//   }
+
+//   res.json(user);
+// });
+
+app.get("/", async (req, res, next) => {
+  try {
+    const user = await User.find();
+    res.json(user);
+  } catch (error) {
+    next(error);
   }
-
-  res.json(user);
 });
 
 app.use((err, req, res, nest) => {
