@@ -20,8 +20,8 @@ const checkUser = (req, res, next) => {
   next();
 };
 
-app.post("/", (req, res) => {
-  const { email, username, age } = req.body;
+app.get("/", (req, res, next) => {
+  // const { email, username, age } = req.body;
 
   // return res.json({
   //   message: "You are registered successfully",
@@ -29,11 +29,19 @@ app.post("/", (req, res) => {
   //   username,
   // });
 
-  throw new Error("Unable to create user");
+  // throw new Error("Unable to create user");
+
+  const user = null;
+
+  if (!user) {
+    next(new Error("Unable to find user"));
+  }
+
+  res.json(user);
 });
 
 app.use((err, req, res, nest) => {
-  console.error(err.message);
+  // console.error(err.message);
   res.status(500).json({ success: false, message: err.message });
 });
 
