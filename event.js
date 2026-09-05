@@ -1,9 +1,17 @@
-import EventEmmiter from "node:events";
+import EventEmitter from "node:events";
 
-const eventEmiiiter = new EventEmmiter();
+const eventEmitter = new EventEmitter();
 
-eventEmiiiter.on("msg", (msg) => {
-  console.log(`Message: ${msg}`);
+// eventEmitter.on("msg", (user) => {
+//   console.log(user);
+// });
+
+// eventEmitter.emit("msg", { name: "Vansh", email: "vansh@gmail,com" });
+
+eventEmitter.once("msg", (msg) => {
+  console.log(msg);
 });
 
-eventEmiiiter.emit("msg", "Hello Vansh");
+eventEmitter.emit("msg", "Hello Vansh");
+eventEmitter.emit("msg", "Hello Aman");
+eventEmitter.emit("msg", "Hello Kartik");
