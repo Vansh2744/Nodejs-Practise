@@ -1,4 +1,4 @@
-import EventEmitter from "node:events";
+import { EventEmitter } from "node:events";
 
 const eventEmitter = new EventEmitter();
 
@@ -50,8 +50,11 @@ const eventEmitter = new EventEmitter();
 // chat.sendMessage("Hello Vansh");
 // chat.sendNotification("You are logged in successfully");
 
-eventEmitter.on("error", (err) => {
-  console.log(`Error : ${err.message}`);
-});
+// const errDisplay = (err) => {
+//   console.log(`Error : ${err.message}`);
+// };
 
-eventEmitter.emit("error", new Error("Unable to Fetch User"));
+// eventEmitter.on("error", errDisplay);
+
+// eventEmitter.emit("error", new Error("Unable to Fetch User"));
+// eventEmitter.removeListener("error", errDisplay);
