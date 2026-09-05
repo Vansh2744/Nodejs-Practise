@@ -1,6 +1,6 @@
 import EventEmitter from "node:events";
 
-const eventEmitter = new EventEmitter();
+// const eventEmitter = new EventEmitter();
 
 // eventEmitter.on("msg", (user) => {
 //   console.log(user);
@@ -16,12 +16,27 @@ const eventEmitter = new EventEmitter();
 // eventEmitter.emit("msg", "Hello Aman");
 // eventEmitter.emit("msg", "Hello Kartik");
 
-eventEmitter.on("msg", (msg) => {
-  console.log(`Message : ${msg}`);
+// eventEmitter.on("msg", (msg) => {
+//   console.log(`Message : ${msg}`);
+// });
+
+// eventEmitter.on("msg", (msg) => {
+//   console.log(`Received : ${msg}`);
+// });
+
+// eventEmitter.emit("msg", "Hello Vansh");
+
+class Chat extends EventEmitter {
+  sendMessage(msg) {
+    console.log("Message Send : ", msg);
+    this.emit("msg", msg);
+  }
+}
+
+const chat = new Chat();
+
+chat.on("msg", (msg) => {
+  console.log(`Message Received : ${msg}`);
 });
 
-eventEmitter.on("msg", (msg) => {
-  console.log(`Received : ${msg}`);
-});
-
-eventEmitter.emit("msg", "Hello Vansh");
+chat.sendMessage("Hello Vansh");
